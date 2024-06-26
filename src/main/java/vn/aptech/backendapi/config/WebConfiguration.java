@@ -43,12 +43,18 @@ public class WebConfiguration implements WebMvcConfigurer {
         return javaMailSender;
     }
 
+    // @Override
+    // public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    //     String staticFolder = "file:///" + System.getProperty("user.dir") +
+    //             "/src/main/resources/static/images/";
+    //     registry.addResourceHandler("/images/**").addResourceLocations(staticFolder);
+    //     WebMvcConfigurer.super.addResourceHandlers(registry);
+    // }
+
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        String staticFolder = "file:///" + System.getProperty("user.dir") +
-                "/src/main/resources/static/images/";
-        registry.addResourceHandler("/images/**").addResourceLocations(staticFolder);
-        WebMvcConfigurer.super.addResourceHandlers(registry);
+        registry.addResourceHandler("/images/**")
+                .addResourceLocations("classpath:/static/images/");
     }
 
     @Bean
