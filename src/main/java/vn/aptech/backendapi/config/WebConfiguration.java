@@ -20,7 +20,7 @@ import vn.aptech.backendapi.jwt.JWTImpl;
 @Configuration
 @EnableWebMvc
 public class WebConfiguration implements WebMvcConfigurer {
-    
+
     @Value("${spring.mail.host}")
     private String mailHost;
     @Value("${spring.mail.port}")
@@ -45,16 +45,17 @@ public class WebConfiguration implements WebMvcConfigurer {
 
     // @Override
     // public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    //     String staticFolder = "file:///" + System.getProperty("user.dir") +
-    //             "/src/main/resources/static/images/";
-    //     registry.addResourceHandler("/images/**").addResourceLocations(staticFolder);
-    //     WebMvcConfigurer.super.addResourceHandlers(registry);
+    // String staticFolder = "file:///" + System.getProperty("user.dir") +
+    // "/src/main/resources/static/images/";
+    // registry.addResourceHandler("/images/**").addResourceLocations(staticFolder);
+    // WebMvcConfigurer.super.addResourceHandlers(registry);
     // }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/images/**")
-                .addResourceLocations("classpath:/static/images/");
+        String staticFolder = "classpath:/static/images/";
+        registry.addResourceHandler("/images/**").addResourceLocations(staticFolder);
+        WebMvcConfigurer.super.addResourceHandlers(registry);
     }
 
     @Bean
